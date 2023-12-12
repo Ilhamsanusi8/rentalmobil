@@ -1,83 +1,66 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-struct Mobil {
-    char nama[30];
-    int harga;
-};
-
-void tampilkanDaftarMobil() {
-    printf("Pilihan mobil yang disewakan\n");
-    printf(" 1 - Toyota Avanza type G - Rp. 5.500.000\n");
-    printf(" 2 - Honda Yaris type G - Rp. 6.500.000\n");
-    printf(" 3 - Toyota Rush type G - Rp. 7.500.000\n");
-}
-
-int sewaMobil(char kodeMobil, int lamaSewa) {
-    struct Mobil mobil;
-    int harga = 0;
-
-    switch (kodeMobil) {
-        case '1':
-            strcpy(mobil.nama, "Toyota Avanza type G");
-            mobil.harga = 5500000;
-            break;
-        case '2':
-            strcpy(mobil.nama, "Honda Yaris type G");
-            mobil.harga = 6500000;
-            break;
-        case '3':
-            strcpy(mobil.nama, "Toyota Rush type G");
-            mobil.harga = 7500000;
-            break;
-            printf("Mobil yang dipilih tidak tersedia\n");
-            return 0;
-    }
-
-    printf("Anda menyewa mobil: %s\n", mobil.nama);
-    printf("Harga per hari: Rp. %d\n", mobil.harga);
-
-    int total = mobil.harga * lamaSewa;
-
-    printf("\n====================================================\n");
-    printf("Struk pembayaran\n");
-    printf("====================================================\n");
-    printf("Harga per hari               : %d\n", mobil.harga);
-    printf("Lama sewa                    : %d hari\n", lamaSewa);
-    printf("Total keseluruhan            : %d\n", total);
-    printf("\n====================================================\n");
-
-    return total;
-}
-
 int main() {
-    char namaPenyewa[50];
+    char name[40], penyewa[50];
+    int harga, jumlahtotal, total;
     char input;
-    char kodeMobil;
-    int lamaSewa;
-    int totalPembayaran = 0;
+    char kode;
 
-awal:
+	awal:
     printf("                  Rental Mobil Rezeki             \n");
     printf("====================================================\n");
-    printf("Nama penyewa                 : ");
-    scanf("%s", namaPenyewa);
+    printf("Nama penyewa                : ");
+    scanf("%s", penyewa);
+    printf("Pilihan mobil yang di sewakan\n");
+    printf(" 1 - Toyota Avanza type G - Rp. 5.500.000\n");
+    printf(" 2 - Honda Yaris type G - Rp. 6.500.000\n");
+    printf(" 3 - Toyota Rush Rush type G - Rp. 7.500.000\n");
 
-    do {
-        tampilkanDaftarMobil();
-        printf("\nMobil yang disewakan  : ");
-        scanf("%c", &kodeMobil);
-        printf("Jumlah lama hari menyewa: ");
-        scanf("%d", &lamaSewa);
+    printf("\n");
+    printf("\n");
+    printf("Mobil yang di sewakan       : ");
+    scanf(" %c", &kode);
+    printf("Jumlah lama hari menyewa    : ");
+    scanf("%d", &jumlahtotal);
 
-        totalPembayaran += sewaMobil(kodeMobil, lamaSewa);
+    if (kode == '1') {
+        printf("Toyota Avanza type G\n");
+        harga = 5500000;
+    } else if (kode == '2') {
+        printf("Honda Yaris type G\n");
+        harga = 6500000;
+    } else if (kode == '3') {
+        printf("Toyota Rush type G\n");
+        harga = 7500000;
+    } else {
+        printf("Barang yang di pilih tidak tersedia\n");
+        return 0;
+    }
 
-        printf("\nIngin inputkan lagi? [Y/N]  : ");
-        scanf(" %c", &input);
-    } while (input == 'y' || input == 'Y');
+    printf("\n");
+    printf("====================================================\n");
+    printf("Struk pembayaran\n");
+    printf("====================================================\n");
+    printf("Nama Penyewa                : %s\n", penyewa);
+    printf("Harga                       : %d\n", harga);
+    printf("Jumlah                      : %d\n", jumlahtotal);
 
-    printf("Terima kasih, %s!\n", namaPenyewa);
-    printf("Total pembayaran yang harus dibayar: Rp. %d\n", totalPembayaran);
+    total = harga * jumlahtotal;
 
-    return 0;
+    printf("Total keseluruhan           : %d\n", total);
+
+    printf("\n");
+
+    printf("====================================================\n");
+
+    printf("Ingin Inputkan lagi? [Y/N]  : ");
+    scanf(" %c", &input);
+
+    if (input == 'y' || input == 'Y') {
+        goto awal;
+    } else {
+        return 0;
+    }
 }
