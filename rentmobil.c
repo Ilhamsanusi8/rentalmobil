@@ -8,7 +8,7 @@ int main() {
     char input;
     char kode;
 
-	awal:
+    awal:
     printf("                  Rental Mobil Rezeki             \n");
     printf("====================================================\n");
     printf("Nama penyewa                : ");
